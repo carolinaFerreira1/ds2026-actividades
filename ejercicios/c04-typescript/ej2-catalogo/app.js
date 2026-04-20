@@ -1,5 +1,5 @@
 "use strict";
-const catalogo = [
+let catalogo = [
     { isbn: "111", titulo: "El Aleph", autor: "Borges", precio: 5000, disponible: true },
     { isbn: "222", titulo: "Rayuela", autor: "Cortázar", precio: 7000, disponible: false },
     { isbn: "333", titulo: "Ficciones", autor: "Borges", precio: 4500, disponible: true },
