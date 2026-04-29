@@ -31,3 +31,4 @@ const mostrarUsuarios = async () => {
 };
 
 mostrarUsuarios();
+export {};
