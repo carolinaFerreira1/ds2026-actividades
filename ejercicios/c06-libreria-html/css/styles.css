@@ -1,0 +1,53 @@
+:root {
+    --color-principal: #053361; 
+    --color-acento: #e62253;   
+    --fuente-titulos: 'Playfair Display', serif; 
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-primary {
+    background: linear-gradient(135deg, var(--color-principal) 0%, #34495e 100%) !important;
+}
+
+.card {
+    border: none;
+    border-radius: 15px; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+}
+
+.card-img-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.btn-primary {
+    background-color: var(--color-acento) !important;
+    border-color: var(--color-acento) !important;
+    border-radius: 25px; 
+    font-weight: bold;
+    padding: 10px 25px;
+}
+
+.btn-primary:hover {
+    filter: brightness(90%);
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.form-control:focus {
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 0.25rem rgba(230, 126, 34, 0.25);
+}
