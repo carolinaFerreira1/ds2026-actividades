@@ -1,5 +1,5 @@
 const inputBusqueda = document.getElementById('inputBusqueda');
-const btnBuscar = document.getElementById('btnBuscar');
+const btnBuscar = document.getElementById ('btnBuscar');
 const contenedorResultados = document.getElementById('resultados');
 
 btnBuscar.addEventListener('click', () => {

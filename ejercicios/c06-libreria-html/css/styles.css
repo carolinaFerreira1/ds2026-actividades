@@ -1,17 +1,17 @@
 :root {
-    --color-principal: #053361; 
+    --color-principal: #0f3e6d; 
     --color-acento: #e62253;   
     --fuente-titulos: 'Playfair Display', serif; 
 }
 
 body {
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #a9bfd6;
+    color: #4fb6cf;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .bg-primary {
-    background: linear-gradient(135deg, var(--color-principal) 0%, #34495e 100%) !important;
+    background: linear-gradient(135deg, var(--color-principal) 0%, #0c0e69 100%) !important;
 }
 
 .card {
@@ -22,7 +22,7 @@ body {
 
 .card:hover {
     transform: translateY(-10px); 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+    box-shadow: 0 10px 20px rgba(35, 21, 99, 0.15) !important;
 }
 
 .card-img-top {
