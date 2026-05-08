@@ -11,27 +11,40 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <main class="container my-5">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">📖 Mi Librería</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<main class="container my-5">
     <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
-            <h2 class="text-center mb-4">Contacto</h2>
-            <p class="text-center text-muted mb-5">¿Tienes alguna duda o sugerencia? Dejanos tu mensaje.</p>
-
+            <h2 class="text-center mb-4">Formulario de Contacto</h2>
+            
             <form action="#" class="shadow p-4 rounded bg-light">
                 <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre completo</label>
-                    <input type="text" class="id-control form-control" id="nombre" placeholder="Tu nombre" required>
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="email" class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="asunto" class="form-label">Asunto</label>
                     <select class="form-select" id="asunto" required>
-                        <option value="" selected disabled>Selecciona una opción:</option>
+                        <option value="" selected disabled>Seleccione una opción</option>
                         <option value="consulta">Consulta</option>
                         <option value="reclamo">Reclamo</option>
                         <option value="sugerencia">Sugerencia</option>
@@ -40,46 +53,24 @@
 
                 <div class="mb-4">
                     <label for="mensaje" class="form-label">Mensaje</label>
-                    <textarea class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    <textarea class="form-control" id="mensaje" rows="4" required></textarea>
                 </div>
 
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg">Enviar mensaje</button>
+                    <button type="submit" class="btn btn-primary btn-lg">Enviar Mensaje</button>
                 </div>
             </form>
         </div>
     </div>
 </main>
-  <div class="container-fluid">
-    <a class="navbar-brand" href="index.html">
-      <i class="bi bi-book"></i> 
-      📖 Mi Librería
-    </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="catalogo.html">Catálogo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contacto.html">Contacto</a>
-        </li>
-      </ul>
+    <footer class="bg-light text-center py-4 mt-5 border-top">
+    <div class="container">
+        <p class="mb-0 text-muted">© 2026 Mi Librería - Todos los derechos reservados</p>
+        <p class="mb-0">
+            <a href="contacto.html" class="text-decoration-none">¿Tienes dudas? Contáctanos aquí</a>
+        </p>
     </div>
-  </div>
-</nav>
-
-    <div class="container mt-5">
-        <h1>Bienvenido a mi Librería</h1>
-        
-    </div>
+</footer>
 
     <script src="js/data.js"></script>
 
