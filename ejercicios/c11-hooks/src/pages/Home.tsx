@@ -1,14 +1,26 @@
-import type { libroCardProps } from '../types/libroCardProps';
 import LibroCard from '../components/LibroCard';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container, Spinner, Alert } from 'react-bootstrap';
+import { useFetch } from '../hooks/useFetch';
+import type { libroCardProps } from '../types/libroCardProps'; 
 
-interface Props {
-  libros: libroCardProps[];
-}
+function Home() {
+ 
+  const { data: libros, loading, error } = useFetch<libroCardProps[]>('/libros.json');
 
-function Home({ libros }: Props) {
   const destacados = libros?.slice(-3) || [];
 
+  if (loading) return (
+    <Container className="text-center py-5">
+      <Spinner animation="border" variant="primary" />
+      <p>Cargando novedades...</p>
+    </Container>
+  );
+
+  if (error) return (
+    <Container className="py-5">
+      <Alert variant="warning">No pudimos cargar los destacados en este momento.</Alert>
+    </Container>
+  );
 
   return (
     <Container>

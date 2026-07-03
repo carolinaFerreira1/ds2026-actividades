@@ -3,31 +3,30 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Card } from 'react-bootstrap';
 import { libroSchema } from '../schemas/libroSchema';
-import type { libroCardProps } from '../types/libroCardProps';
+import { libroCardProps } from '../types/libroCardProps'; 
 import type { LibroValidado } from '../schemas/libroSchema';
 
-interface Props {
-  onAgregar: (libro: libroCardProps) => void;
-}
+
 
 const IMG_PLACEHOLDER = 'https://placehold.co/300x400?text=Libro+Nuevo';
 
-function LibroNuevo({ onAgregar }: Props) {
+function LibroNuevo() {
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm<LibroValidado>({
-  resolver: zodResolver(libroSchema),
-  defaultValues: {
-    disponible: true
-  }
-});
+    resolver: zodResolver(libroSchema),
+    defaultValues: {
+      disponible: true
+    }
+  });
 
   const onSubmit = (data: LibroValidado) => {
-    onAgregar({
+    console.log('Simulando guardado de libro:', {
       ...data,
       id: Date.now(),
       imagen: IMG_PLACEHOLDER
     });
+    
     navigate('/catalogo');
   };
 
