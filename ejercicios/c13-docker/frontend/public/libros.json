@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "titulo": "El Aleph",
+    "autor": "Jorge Luis Borges",
+    "precio": 15000,
+    "disponible": true,
+    "imagen": "https://placehold.co/300x400?text=El+Aleph"
+  },
+  {
+    "id": 2,
+    "titulo": "Rayuela",
+    "autor": "Julio Cortázar",
+    "precio": 18000,
+    "disponible": true,
+    "imagen": "https://placehold.co/300x400?text=Rayuela"
+  }
+]

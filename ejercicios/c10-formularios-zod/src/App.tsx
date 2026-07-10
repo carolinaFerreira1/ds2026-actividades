@@ -41,6 +41,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/catalogo" element={<Catalogo libros={libros} />} />
         <Route path="/libros/nuevo" element={<LibroNuevo onAgregar={agregarLibro} />} />
+        <Route path="/" element={<Home libros={libros} />} />
+        
       </Routes>
     </Layout>
   );
