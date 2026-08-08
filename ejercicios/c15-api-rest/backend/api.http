@@ -1,0 +1,27 @@
+@baseUrl = http://localhost:3000/api
+
+GET {{baseUrl}}/autores
+
+GET {{baseUrl}}/autores/1
+
+GET {{baseUrl}}/autores/999
+
+POST {{baseUrl}}/autores
+Content-Type: application/json
+
+{
+  "nombre": "Gabriel García Márquez",
+  "nacionalidad": "Colombiana"
+}
+
+PUT {{baseUrl}}/autores/1
+Content-Type: application/json
+
+{
+  "nombre": "Julio Cortázar (Editado)",
+  "nacionalidad": "Argentina"
+}
+
+DELETE {{baseUrl}}/autores/2
+
+DELETE {{baseUrl}}/autores/2
