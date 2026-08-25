@@ -1,34 +1,92 @@
-import { Libro } from "../types/libro.types";
+import { Prisma } from "../generated/prisma/client"; 
+import prisma from "../config/prisma";
 
-let libros: Libro[] = [
-  { id: 1, titulo: "El Aleph", autor: "Jorge Luis Borges", precio: 15000, imagen: "...", disponible: true },
-  { id: 2, titulo: "Rayuela", autor: "Julio Cortázar", precio: 18000, imagen: "...", disponible: true }
-];
-let proximoId = 3;
+export type LibroCompleto = Prisma.LibroGetPayload<{
+  include: {
+    autor: true;
+    categorias: true;
+  };
+}>;
 
-export const findAll = (disponible?: boolean) => {
-  if (disponible !== undefined) return libros.filter(l => l.disponible === disponible);
-  return libros;
-};
+export async function findAll(disponible?: boolean): Promise<LibroCompleto[]> {
+  return prisma.libro.findMany({
+    // Si viene el parámetro 'disponible' filtramos, sino traemos todos
+    where: disponible !== undefined ? { disponible } : {},
+    include: {
+      autor: true,
+      categorias: true,
+    },
+  });
+}
 
-export const findById = (id: number) => libros.find(l => l.id === id);
+export async function findById(id: number): Promise<LibroCompleto | null> {
+  return prisma.libro.findUnique({
+    where: { id },
+    include: {
+      autor: true,
+      categorias: true,
+    },
+  });
+}
 
-export const create = (data: Omit<Libro, "id">) => {
-  const nuevo = { id: proximoId++, ...data };
-  libros.push(nuevo);
-  return nuevo;
-};
+export async function create(data: {
+  titulo: string;
+  precio: number;
+  imagen: string;
+  disponible?: boolean;
+  autorId: number;
+  categorias?: number[]; 
+}) {
+  const { categorias, ...libroData } = data;
 
-export const update = (id: number, data: Omit<Libro, "id">) => {
-  const index = libros.findIndex(l => l.id === id);
-  if (index === -1) return undefined;
-  libros[index] = { id, ...data };
-  return libros[index];
-};
+  return prisma.libro.create({
+    data: {
+      ...libroData,
+      categorias: categorias
+        ? {
+            connect: categorias.map((id) => ({ id })),
+          }
+        : undefined,
+    },
+    include: {
+      autor: true,
+      categorias: true,
+    },
+  });
+}
 
-export const remove = (id: number) => {
-  const index = libros.findIndex(l => l.id === id);
-  if (index === -1) return false;
-  libros.splice(index, 1);
-  return true;
-};
+export async function update(
+  id: number,
+  data: {
+    titulo?: string;
+    precio?: number;
+    imagen?: string;
+    disponible?: boolean;
+    autorId?: number;
+    categorias?: number[];
+  }
+) {
+  const { categorias, ...libroData } = data;
+
+  return prisma.libro.update({
+    where: { id },
+    data: {
+      ...libroData,
+      categorias: categorias
+        ? {
+            set: categorias.map((id) => ({ id })),
+          }
+        : undefined,
+    },
+    include: {
+      autor: true,
+      categorias: true,
+    },
+  });
+}
+
+export async function remove(id: number) {
+  return prisma.libro.delete({
+    where: { id },
+  });
+}

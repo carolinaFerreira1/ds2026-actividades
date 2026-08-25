@@ -1,7 +1,5 @@
 import { prisma } from "../src/config/prisma";
 
-const prisma = new prisma();
-
 const autores = [
   { nombre: "Antoine de Saint-Exupéry", nacionalidad: "Francia" },
   { nombre: "Julio Cortázar", nacionalidad: "Argentina" },
