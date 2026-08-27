@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
-import { AnyZodObject } from "zod";
+import { ZodObject } from "zod";
 
 // Middleware para validar el BODY de una petición POST/PUT
-export const validateBody = (schema: AnyZodObject) => {
+export const validateBody = (schema: ZodObject<any>) => {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.body);
     
@@ -15,7 +15,7 @@ export const validateBody = (schema: AnyZodObject) => {
   };
 };
 
-export const validateParams = (schema: AnyZodObject) => {
+export const validateParams = (schema: ZodObject<any>) => {
   return (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.params);
     
