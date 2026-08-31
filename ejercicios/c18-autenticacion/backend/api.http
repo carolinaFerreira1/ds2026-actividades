@@ -1,0 +1,88 @@
+@baseUrl = http://localhost:3000/api
+
+# @name registroCliente
+POST {{baseUrl}}/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Carlos Cliente",
+  "email": "carlos@libreria.test",
+  "password": "Password123"
+}
+
+POST {{baseUrl}}/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Carlos Duplicado",
+  "email": "carlos@libreria.test",
+  "password": "Password123"
+}
+
+# @name loginCliente
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "carlos@libreria.test",
+  "password": "Password123"
+}
+
+@tokenCliente = {{loginCliente.response.body.token}}
+
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "carlos@libreria.test",
+  "password": "PasswordErroneo"
+}
+
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "fantasma@libreria.test",
+  "password": "Password123"
+}
+
+GET {{baseUrl}}/auth/yo
+Authorization: Bearer {{tokenCliente}}
+
+GET {{baseUrl}}/auth/yo
+Authorization: Bearer {{tokenCliente}}ROTO
+
+GET {{baseUrl}}/auth/yo
+
+GET {{baseUrl}}/libros
+
+POST {{baseUrl}}/libros
+Authorization: Bearer {{tokenCliente}}
+Content-Type: application/json
+
+{
+  "titulo": "Hackeando el sistema",
+  "precio": 9999,
+  "descripcion": "Un libro ficticio que no debería poder ser creado por un cliente."
+}
+
+# @name loginAdmin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@libreria.test",
+  "password": "admin123"
+}
+
+@tokenAdmin = {{loginAdmin.response.body.token}}
+
+POST {{baseUrl}}/libros
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "titulo": "Harry Potter y la Piedra Filosofal",
+  "precio": 3500,
+  "descripcion": "El primer libro de la famosa saga de magia y aventuras de J.K. Rowling."
+}
