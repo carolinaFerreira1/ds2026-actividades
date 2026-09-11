@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Catalogo from './pages/Catalogo';
 import LibroNuevo from './pages/LibroNuevo';
 import LibroDetalle from './pages/LibroDetalle';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/catalogo" element={<Catalogo />} />
         <Route path="/libros/nuevo" element={<LibroNuevo />} />
         <Route path="/libros/:id" element={<LibroDetalle />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Layout>
   );

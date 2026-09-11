@@ -5,7 +5,6 @@ import autorRoutes from "./routes/autor.routes";
 import { errorHandler } from "./middlewares/error.middleware"; 
 import cors from "cors";
 
-
 const corsOptions = {
   origin: [process.env.FRONTEND_URL ?? "http://localhost:5173"],
 };
@@ -16,7 +15,12 @@ app.use(express.json());
 app.use("/api/libros", libroRoutes);
 app.use("/api/autores", autorRoutes);
 app.use("/api/auth", authRoutes);
+
 app.use(errorHandler);
+
+app.use((_req, res) => {
+  res.status(404).json({ error: "Ruta no encontrada" });
+});
 
 app.listen(3000, () => {
   console.log("Servidor corriendo en http://localhost:3000");

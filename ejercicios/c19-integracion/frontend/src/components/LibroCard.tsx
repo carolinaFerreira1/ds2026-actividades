@@ -8,7 +8,7 @@ function LibroCard({ id, titulo, autor, imagen }: libroCardProps) {
       <Card.Img variant="top" src={imagen} />
       <Card.Body className="d-flex flex-column">
         <Card.Title>{titulo}</Card.Title>
-        <Card.Text>Autor: {autor}</Card.Text>
+        <Card.Text>Autor: {autor.nombre}</Card.Text>
         
         <Button as={Link as any} to={`/libros/${id}`} variant="primary" className="mt-auto">
           Ver detalles

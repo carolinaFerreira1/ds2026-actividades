@@ -1,14 +1,13 @@
 import { useParams, Link } from 'react-router-dom';
-import { Container, Button, Row, Col, Spinner, Alert } from 'react-bootstrap';
+import { Container, Button, Row, Col, Spinner } from 'react-bootstrap';
 import { useFetch } from '../hooks/useFetch';
-import type { libroCardProps } from '../types/libroCardProps'; // ✅ Usando PascalCase
+import type { libroCardProps } from '../types/libroCardProps';
 
 function LibroDetalle() {
   const { id } = useParams<{ id: string }>();
 
-  const { data: libros, loading, error } = useFetch<libroCardProps[]>('/libros.json');
-
-  const libro = libros?.find((l) => l.id === Number(id));
+  // Consumimos el endpoint del libro por ID directamente
+  const { data: libro, loading, error } = useFetch<libroCardProps>(`/libros/${id}`);
 
   if (loading) return (
     <Container className="text-center py-5">
@@ -17,27 +16,16 @@ function LibroDetalle() {
     </Container>
   );
 
-  if (error) return (
-    <Container className="py-5">
-      <Alert variant="danger">
-        <Alert.Heading>Error de conexión</Alert.Heading>
-        <p>{error}</p>
-      </Alert>
+  if (error || !libro) return (
+    <Container className="py-5 text-center">
+      <h2 className="display-4">404</h2>
+      <h3>Libro no encontrado</h3>
+      <p className="text-muted">El libro con ID {id} no existe en nuestro catálogo o no se pudo cargar.</p>
+      <Button as={Link as any} to="/catalogo" variant="primary" className="mt-3">
+        Volver al catálogo
+      </Button>
     </Container>
   );
-
-  if (!libro) {
-    return (
-      <Container className="py-5 text-center">
-        <h2 className="display-4">404</h2>
-        <h3>Libro no encontrado</h3>
-        <p className="text-muted">El libro con ID {id} no existe en nuestro catálogo.</p>
-        <Button as={Link as any} to="/catalogo" variant="primary" className="mt-3">
-          Volver al catálogo
-        </Button>
-      </Container>
-    );
-  }
 
   return (
     <Container className="py-5">
@@ -59,7 +47,7 @@ function LibroDetalle() {
           </nav>
           
           <h1 className="display-5 fw-bold">{libro.titulo}</h1>
-          <h3 className="text-secondary mb-4">por {libro.autor}</h3>
+          <h3 className="text-secondary mb-4">por {libro.autor.nombre}</h3>
           
           <div className="bg-light p-4 rounded-3 border">
             <h2 className="text-primary h1 mb-3">${libro.precio.toLocaleString('es-AR')}</h2>

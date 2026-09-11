@@ -2,9 +2,11 @@ FROM node:20-slim
 
 WORKDIR /app
 
+RUN npm config set strict-ssl false
+
 COPY package*.json ./
 
-RUN npm install --prefer-offline --no-audit
+RUN npm install
 
 COPY . .
 

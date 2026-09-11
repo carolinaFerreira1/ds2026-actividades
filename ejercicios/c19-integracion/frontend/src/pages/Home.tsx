@@ -4,8 +4,7 @@ import { useFetch } from '../hooks/useFetch';
 import type { libroCardProps } from '../types/libroCardProps'; 
 
 function Home() {
- 
-  const { data: libros, loading, error } = useFetch<libroCardProps[]>('/libros.json');
+  const { data: libros, loading, error } = useFetch<libroCardProps[]>('/libros');
 
   const destacados = libros?.slice(-3) || [];
 
@@ -31,7 +30,7 @@ function Home() {
 
       <h2 className="my-4">Libros Destacados</h2>
       <Row>
-        {destacados.map((libro) => (
+        {destacados.map((libro: libroCardProps) => (
           <Col key={libro.id} sm={12} md={4} className="mb-4">
             <LibroCard {...libro} /> 
           </Col>
