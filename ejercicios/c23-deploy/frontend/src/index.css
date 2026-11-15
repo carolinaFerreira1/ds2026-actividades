@@ -224,14 +224,16 @@ a {
   color: var(--azul-800);
 }
 
-.form-control {
+.form-control,
+.form-select {
   border: 2px solid var(--azul-100);
   border-radius: 14px;
   padding: 0.6rem 0.9rem;
-  background: #fff;
+  background-color: #fff;
 }
 
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
   border-color: var(--rosa-400);
   box-shadow: 0 0 0 0.25rem rgba(236, 72, 153, 0.2);
 }
